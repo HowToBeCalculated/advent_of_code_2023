@@ -5,7 +5,7 @@ use std::path::Path;
 
 
 fn main() {
-    if let Ok(lines) = read_lines("input.txt") {
+    if let Ok(lines) = read_lines("day_input.txt") {
         let lines: Vec<String> = lines.map(|l| l.unwrap()).collect();
         println!("Part 1: {}", day2_part1(lines.clone()));
         println!("Part 2: {}", day2_part2(lines.clone()));

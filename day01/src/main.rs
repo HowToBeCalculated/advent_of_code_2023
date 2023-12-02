@@ -6,7 +6,7 @@ const NUMBER_NAMES: [&str; 10] = ["zero", "one", "two", "three", "four", "five",
 
 
 fn main() {
-    if let Ok(lines) = read_lines("input.txt") {
+    if let Ok(lines) = read_lines("day_input.txt") {
         let lines: Vec<String> = lines.map(|l| l.unwrap()).collect();
         println!("Part 1: {}", day1_part1(lines.clone()));
         println!("Part 2: {}", day1_part2(lines));
