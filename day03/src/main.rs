@@ -94,7 +94,7 @@ fn day3_part1(lines: Vec<String>) -> i32 {
                 let safe_j_min = max(0, j - 1);
                 let safe_j_max = min(cols - 1, j + 1);
 
-                for k in safe_j_min..(safe_j_max + 1) {
+                for k in safe_j_min..=safe_j_max {
                     let lower_element = get_current_element(&lines[safe_i], safe_i, k);
                     if lower_element.is_ascii_digit() {
                         left_most_loc.insert(left_helper(&lines[safe_i], safe_i, k));
@@ -103,7 +103,7 @@ fn day3_part1(lines: Vec<String>) -> i32 {
 
                 // check up until non digit is found
                 let safe_i = max(0, i - 1);
-                for k in safe_j_min..(safe_j_max + 1) {
+                for k in safe_j_min..=safe_j_max {
                     let upper_element = get_current_element(&lines[safe_i], safe_i, k);
                     if upper_element.is_ascii_digit() {
                         left_most_loc.insert(left_helper(&lines[safe_i], safe_i, k));
@@ -150,8 +150,7 @@ fn day3_part2(lines: Vec<String>) -> i32 {
                 let safe_i = min(rows - 1, i + 1);
                 let safe_j_min = max(0, j - 1);
                 let safe_j_max = min(cols - 1, j + 1);
-
-                for k in safe_j_min..(safe_j_max + 1) {
+                for k in safe_j_min..=safe_j_max {
                     let lower_element = get_current_element(&lines[safe_i], safe_i, k);
                     if lower_element.is_ascii_digit() {
                         left_most_loc.insert(left_helper(&lines[safe_i], safe_i, k));
@@ -160,20 +159,23 @@ fn day3_part2(lines: Vec<String>) -> i32 {
 
                 // check up until non digit is found
                 let safe_i = max(0, i - 1);
-                for k in safe_j_min..(safe_j_max + 1) {
+                for k in safe_j_min..=safe_j_max {
                     let upper_element = get_current_element(&lines[safe_i], safe_i, k);
                     if upper_element.is_ascii_digit() {
                         left_most_loc.insert(left_helper(&lines[safe_i], safe_i, k));
                     }
                 }
-
                 gear_map.insert((i as i32, j as i32), left_most_loc);
             }
         }
     }
     let mut summed = 0;
     for ((_i, _j), left_most_loc) in gear_map {
+
+        // given in prompt that we'll only include when there's 2
         if left_most_loc.len() == 2 {
+
+            // get the two numbers and multiply
             let lhs = left_most_loc.iter().next().unwrap();
             let rhs = left_most_loc.iter().last().unwrap();
 
@@ -205,7 +207,7 @@ mod tests {
             "...$.*....".to_string(),
             ".664.598..".to_string(),
         ];
-        assert_eq!(day3_part1(test_input), 4361);
+        assert_eq!(day3_part1(test_input), 43_61);
     }
 
     #[test]
@@ -222,6 +224,6 @@ mod tests {
             "...$.*....".to_string(),
             ".664.598..".to_string(),
         ];
-        assert_eq!(day3_part2(test_input), 467835);
+        assert_eq!(day3_part2(test_input), 467_835);
     }
 }
