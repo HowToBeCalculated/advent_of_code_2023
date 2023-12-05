@@ -207,7 +207,7 @@ mod tests {
             "...$.*....".to_string(),
             ".664.598..".to_string(),
         ];
-        assert_eq!(day3_part1(test_input), 43_61);
+        assert_eq!(day3_part1(test_input), 4_361);
     }
 
     #[test]
